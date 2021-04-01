@@ -57,6 +57,13 @@ public class TraderAndTransaction {
 
         System.out.println("allTraderNameOrderByAsc = " + allTraderNameOrderByAsc);
 
+        //4. 효율성 개선, joining을 사용해 내부적으로 StringBuilder를 사용해 문자열 연산에 효율적
+        transaction.stream()
+                .map(t->t.getTrader().getName())
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining());
+
         //5. 밀라노에 거주자가 있는가?
         boolean milan = transaction.stream()
                 .anyMatch(t->t.getTrader().getCity().equals("Milan"));
