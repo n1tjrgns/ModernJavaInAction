@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TraderAndTransaction {
     public static void main(String[] args) {
@@ -90,5 +91,17 @@ public class TraderAndTransaction {
                 .reduce(Integer::min);
 
         System.out.println("minValue = " + minValue);
+
+
+        //피보나치 수열 집합 20개 만들기
+        Stream.iterate(new int[]{0,1}, t-> new int[]{t[1], t[0]+t[1]})
+                .limit(20)
+                .forEach(t->System.out.println(t[0] + " :: " + t[1]));
+
+        //피보나치 수열 집합의 첫번째 인덱스 값의 집합만 가져오기
+        Stream.iterate(new int[]{0,1}, t-> new int[]{t[1], t[0]+t[1]})
+                .limit(20)
+                .map(t->t[0])
+                .forEach(System.out::println);
     }
 }
